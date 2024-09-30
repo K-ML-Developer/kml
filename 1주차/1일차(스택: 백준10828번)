@@ -1,0 +1,50 @@
+# 1. 아이디어
+# - 기본 스택에서 쓰이는 함수구현 문제
+# 2. 시간복잡도
+# 3. 자료구조
+
+# 오답노트 : 첫째줄, 둘째줄에 들어오는 수를 어떻게 받아올 것인지 못 떠올림.
+
+def push(x):
+  stack.append(x)
+
+def pop():
+  if len(stack) == 0:
+    return -1
+  else:
+    return stack.pop()
+
+def top():
+  if len(stack) == 0:
+    return -1
+  else:
+    return stack[-1]
+
+def size():
+  return len(stack)
+
+def empty():
+  if len(stack) == 0:
+    return 1
+  else:
+    return 0
+
+import sys
+input = sys.stdin.readline
+
+N = int(input())
+stack = []
+
+for i in range(N):
+  func = input().split()
+  if func[0] == 'push':
+    push(func[1])
+  elif func[0] == 'pop':
+    print(pop())
+  elif func[0] == 'size':
+    print(size())
+  elif func[0] == 'empty':
+    print(empty())
+  elif func[0] == 'top':
+    print(top())
+
