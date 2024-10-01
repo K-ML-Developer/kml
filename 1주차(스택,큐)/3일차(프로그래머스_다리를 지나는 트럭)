@@ -1,1 +1,22 @@
+from collections import deque
 
+def solution(bridge_length, weight, truck_weights):
+  bridge = deque([0]*bridge_length)
+  truck_weights = deque(truck_weights)
+  time = 0
+  pass_weight = 0 # 다리 위 현재무게
+
+  while truck_weights or sum(bridge)>0:
+    time += 1
+    out = bridge.popleft() # 단위시간이 지나면, 다리 위 트럭이 빠지는 것을 구현
+    pass_weight -= out
+    if truck_weights:
+        if pass_weight + truck_weights[0] <= weight:
+          truck = truck_weights.popleft()
+          bridge.append(truck)
+          pass_weight += truck
+        else:
+          bridge.append(0)
+    else:
+        bridge.append(0)
+  return time
