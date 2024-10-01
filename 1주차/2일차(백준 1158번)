@@ -1,0 +1,20 @@
+from collections import deque
+import heapq
+import sys
+
+input = sys.stdin.readline
+
+N, K = map(int, input().split())
+
+stk = deque()
+rs = []
+for j in range(1,N+1):
+    stk.append(j)
+
+while stk:
+    stk.rotate(-K+1)
+    rs.append(stk[0])
+    stk.popleft()
+
+rs = map(str, rs)
+print("<", ", ".join(rs), ">", sep='')
