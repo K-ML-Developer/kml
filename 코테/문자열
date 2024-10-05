@@ -45,7 +45,7 @@ print("사용되지 않은 문자:", sorted(unused_characters))
 
 # ----------------------------------------------------
 # 4.	Aaabbbbbcccc에서 중복되는 문자를 *로 바꾸는 문제. A***b****c***
-### 몰랐던 것 set활용
+### 몰랐던 것 set활용, if lower_char in see: <- 요 아이디어 떠올리기
 def replace_duplicates(text):
     # 결과를 저장할 리스트
     result = []
