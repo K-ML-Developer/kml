@@ -1,0 +1,36 @@
+from collections import deque
+import sys
+sys.setrecursionlimit(10**6)
+input = sys.stdin.readline
+
+N = int(input())
+graph = [list(map(int, input().strip())) for _ in range(N)]
+visited = [[False]*N for _ in range(N)]
+result = []
+
+dy = [0,1,0,-1]
+dx = [1,0,-1,0]
+
+def dfs(y,x):
+    global each
+    each += 1
+    for k in range(4):
+        ny = y + dy[k]
+        nx = x + dx[k]
+        if 0<=ny<N and 0<=nx<N:
+            if visited[ny][nx] == False and graph[ny][nx] == True:
+                visited[ny][nx] = True
+                dfs(ny,nx)
+
+for j in range(N):
+    for i in range(N):
+        if visited[j][i] == False and graph[j][i] == True:
+            visited[j][i] =True
+            each = 0
+            dfs(j,i)
+            result.append(each)
+
+result.sort()
+print(len(result))
+for i in result:
+    print(i)
