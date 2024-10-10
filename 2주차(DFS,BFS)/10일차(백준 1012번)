@@ -1,0 +1,37 @@
+
+import sys
+
+sys.setrecursionlimit(10**6)
+input = sys.stdin.readline
+
+T = int(input())
+
+dy = [0,1,0,-1]
+dx = [1,0,-1,0]
+
+def dfs(x,y):
+    visited[y][x] = True
+    for k in range(4):
+        ny = y + dy[k]
+        nx = x + dx[k]
+        if 0<=ny<=N-1 and 0<=nx<=M-1:
+            if visited[ny][nx] == False and graph[ny][nx] == True:
+                dfs(nx, ny)
+
+for _ in range(T):
+    M, N, K = map(int, input().split())
+    graph = [[False] * M for _ in range(N)]
+    visited = [[False] * M for _ in range(N)]
+
+    for g in range(K):
+        a, b = map(int, input().split())
+        graph[b][a] = True
+
+    cnt = 0
+    for j in range(N):
+        for i in range(M):
+            if visited[j][i] == False and graph[j][i]==True:
+                dfs(i,j)
+                cnt +=1
+
+    print(cnt) 
