@@ -11,7 +11,6 @@ queue = deque([(0, 0)])
 # 미로 문제 풀 때는 이동을 표현해준다.
 dx = [0, 0, 1, -1]
 dy = [1, -1, 0, 0]
-cnt = 0
 
 # BFS
 while queue:
