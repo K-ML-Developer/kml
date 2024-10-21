@@ -1,0 +1,26 @@
+import sys
+input = sys.stdin.readline
+sys.setrecursionlimit(10**6)
+
+N, M = map(int, input().split())
+trees = sorted(list(map(int, input().split())),reverse=True)
+
+def solution(trees, M):
+    start = 0
+    end = max(trees)
+
+    result = 0
+    while start <= end:
+        mid = (start + end) // 2
+        total = sum(tree - mid if tree > mid else 0 for tree in trees)
+
+        if total >= M:
+            result = mid  # 가능한 최대 높이 저장
+            start = mid + 1  # 더 큰 높이를 시도
+        else:
+            end = mid - 1  # 높이를 낮춤
+
+    return result
+
+
+print(solution(trees, M))
