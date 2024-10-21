@@ -1,0 +1,14 @@
+def solution(n, times):
+    start = 1
+    end = max(times) * n  # 최대 시간
+    
+    while start <= end:
+        mid = (start + end) // 2
+        total = sum(mid // time for time in times)  # 각 심사관이 mid 시간 안에 처리할 수 있는 사람 수
+        
+        if total >= n:
+            end = mid - 1  # 가능한 경우, 더 짧은 시간에서 찾기
+        else:
+            start = mid + 1  # 불가능한 경우, 더 긴 시간에서 찾기
+    
+    return start
