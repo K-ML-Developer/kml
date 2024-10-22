@@ -1,0 +1,25 @@
+from collections import deque
+import sys
+input = sys.stdin.readline
+
+K, N = map(int, input().split())
+cables = [int(input()) for _ in range(K)]  # cables 리스트에 정수로 저장
+
+def solution():
+    start = 1
+    end = max(cables)
+    
+    while start <= end:
+        mid = (start + end) // 2
+        lines = 0  # 전선의 길이 초기화
+        for i in cables:
+            lines += i // mid  # 각 랜선에서 mid 길이로 자를 수 있는 개수 더하기
+            
+        if lines < N:
+            end = mid - 1  # 필요한 랜선 수가 부족하면 길이를 줄임
+        else:
+            start = mid + 1  # 충분하면 길이를 늘림
+
+    return end  # 최대 길이는 end에 저장됨
+
+print(solution())
