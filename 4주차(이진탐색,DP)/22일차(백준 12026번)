@@ -1,0 +1,20 @@
+import math
+
+n = int(input())
+s = input().strip()
+
+def boj(s):
+    n = len(s)
+    dp = [math.inf] * n
+    dp[0] = 0
+
+    for i in range(n):
+        for j in range(i+1,n):
+            if (s[i]=='B' and s[j]=='O') or \
+               (s[i]=='O' and s[j]=='J') or \
+               (s[i]=='J' and s[j]=='B'):
+                 dp[j] = min(dp[j], dp[i]+(j-i)**2)
+
+    return dp[-1] if dp[-1] != -1 else -1
+
+print(boj(s))
